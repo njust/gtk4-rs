@@ -61,6 +61,7 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.ColorStop",
+    "Gsk.ParseLocation",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
     "Pango.Font",
@@ -124,6 +125,13 @@ status = "generate"
         [[object.function.parameter]]
             name = "cr"
             const = true
+    [[object.function]]
+    name = "deserialize"
+    # we add a manual deserialize() function that doesn't take an error_func
+    rename = "deserialize_with_error_func"
+        [[object.function.parameter]]
+        name = "error_func"
+        nullable = false
 
 [[object]]
 name = "Gsk.RepeatingLinearGradientNode"
