@@ -10,6 +10,7 @@ use crate::AccessibleState;
 use crate::DebugFlags;
 use crate::PageSetup;
 use crate::PrintSettings;
+use crate::RequestedSize;
 use crate::StyleContext;
 use crate::TextDirection;
 use crate::TreeModel;
@@ -148,10 +149,21 @@ pub fn disable_setlocale() {
     }
 }
 
-//#[doc(alias = "gtk_distribute_natural_allocation")]
-//pub fn distribute_natural_allocation(extra_space: i32, n_requested_sizes: u32, sizes: /*Ignored*/&mut RequestedSize) -> i32 {
-//    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
-//}
+#[doc(alias = "gtk_distribute_natural_allocation")]
+pub fn distribute_natural_allocation(
+    extra_space: i32,
+    n_requested_sizes: u32,
+    sizes: &mut RequestedSize,
+) -> i32 {
+    assert_initialized_main_thread!();
+    unsafe {
+        ffi::gtk_distribute_natural_allocation(
+            extra_space,
+            n_requested_sizes,
+            sizes.to_glib_none_mut().0,
+        )
+    }
+}
 
 #[doc(alias = "gtk_get_binary_age")]
 pub fn get_binary_age() -> u32 {
