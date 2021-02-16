@@ -6,7 +6,8 @@ __Rust__ bindings and wrappers for __GTK 4__.
 
 ## Documentation
 - [Stable] TODO
-- [Developement](https://gtk-rs.org/gtk4-rs/gtk4/) 
+- [Developement](https://gtk-rs.org/gtk4-rs/gtk4/)
+- [The C documentation](https://developer.gnome.org/gtk4/stable/)
 
 
 ## Building
@@ -36,10 +37,10 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 
 ### See Also:
 
-- [glib](https://crates.io/crate/glib)
-- [gio](https://crates.io/crate/gio)
-- [gdk4](https://crates.io/crate/gdk4)
-- [gsk4](https://crates.io/crate/gsk4)
+- [glib](https://crates.io/crates/glib)
+- [gio](https://crates.io/crates/gio)
+- [gdk4](https://crates.io/crates/gdk4)
+- [gsk4](https://crates.io/crates/gsk4)
 
 
 ## License
