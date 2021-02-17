@@ -2,17 +2,19 @@
 
 [Project site](https://gtk-rs.org/)
 
-__Rust__ bindings and wrappers for __GDK 4's Wayland backend__.
+Rust bindings of __GDK 4's Wayland backend__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+
+__Required Rust version__: 1.48+
 
 ## Documentation
-- [Stable] TODO
-- [Developement](https://gtk-rs.org/gtk4-rs/gdk4_wayland/)
-- [The C documentation](https://developer.gnome.org/gdk4/stable/gdk4-Wayland-Interaction.html)
 
+- [Stable] TODO
+- [Development](https://gtk-rs.org/gtk4-rs/gdk4_wayland/)
+- [The C documentation](https://developer.gnome.org/gdk4/stable/gdk4-Wayland-Interaction.html)
 
 ## Building
 
-__gdk4-wayland__ expects the developement files of various libraries to be installed on your machine.You can follow [the installation instructions](https://www.gtk.org/docs/installations/)
+__gdk4-wayland__ expects the development files of various libraries to be installed on your machine.You can follow [the installation instructions](https://www.gtk.org/docs/installations/)
 
 ## Using
 
@@ -35,14 +37,13 @@ gdk-x11 = {version = "0.1", package = "gdk4-x11"}
 gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-wayland" }
 ```
 
-### See Also:
+### See Also
 
 - [glib](https://crates.io/crates/glib)
 - [gio](https://crates.io/crates/gio)
 - [gsk4](https://crates.io/crates/gsk4)
 - [gdk4](https://crates.io/crates/gdk4)
 - [gtk4](https://crates.io/crates/gtk4)
-
 
 ## License
 

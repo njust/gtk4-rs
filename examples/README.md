@@ -1,7 +1,6 @@
 # Examples
 
-Consists of various examples to get familiar with writing GTK applications using the Rust bindings. 
-
+Consists of various examples to get familiar with writing GTK applications using the Rust bindings.
 
 - [Basic Sample](./examples/src/bin/basic.rs)
 - [GtkBuilder Basics Sample](./examples/src/bin/builder_basics.rs)

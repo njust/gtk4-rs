@@ -2,17 +2,19 @@
 
 [Project site](https://gtk-rs.org/)
 
-__Rust__ bindings and wrappers for __GDK 4__.
+Rust bindings of __GDK 4__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+
+__Required Rust version__: 1.48+
 
 ## Documentation
-- [Stable] TODO
-- [Developement](https://gtk-rs.org/gtk4-rs/gdk4/)
-- [The C documentation](https://developer.gnome.org/gdk4/stable/)
 
+- [Stable] TODO
+- [Development](https://gtk-rs.org/gtk4-rs/gdk4/)
+- [The C documentation](https://developer.gnome.org/gdk4/stable/)
 
 ## Building
 
-__gdk4__ expects the developement files of various libraries to be installed on your machine.You can follow [the installation instructions](https://www.gtk.org/docs/installations/)
+__gdk4__ expects the development files of various libraries to be installed on your machine.You can follow [the installation instructions](https://www.gtk.org/docs/installations/)
 
 ## Using
 
@@ -35,13 +37,12 @@ gtk = {version = "0.1", package = "gtk4"}
 gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
 ```
 
-### See Also:
+### See Also
 
 - [glib](https://crates.io/crates/glib)
 - [gio](https://crates.io/crates/gio)
 - [gsk4](https://crates.io/crates/gsk4)
 - [gtk4](https://crates.io/crates/gtk4)
-
 
 ## License
 
