@@ -6,7 +6,7 @@ __Rust__ bindings and wrappers for __GDK 4's Wayland backend__.
 
 ## Documentation
 - [Stable] TODO
-- [Developement](https://gtk-rs.org/gtk4-rs/gdk4-wayland/)
+- [Developement](https://gtk-rs.org/gtk4-rs/gdk4_wayland/)
 - [The C documentation](https://developer.gnome.org/gdk4/stable/gdk4-Wayland-Interaction.html)
 
 
@@ -31,7 +31,7 @@ Avoid mixing versioned and git crates like this:
 ```toml
 # This will not compile
 [dependencies]
-gdk-x11 = {version = "0.1", package = "gdk-x114"}
+gdk-x11 = {version = "0.1", package = "gdk4-x11"}
 gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-wayland" }
 ```
 
