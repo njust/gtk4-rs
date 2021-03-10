@@ -216,14 +216,6 @@ pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
     }
 }
 
-#[doc(alias = "gtk_im_modules_init")]
-pub fn im_modules_init() {
-    assert_initialized_main_thread!();
-    unsafe {
-        ffi::gtk_im_modules_init();
-    }
-}
-
 #[doc(alias = "gtk_print_run_page_setup_dialog")]
 pub fn print_run_page_setup_dialog<P: IsA<Window>>(
     parent: Option<&P>,

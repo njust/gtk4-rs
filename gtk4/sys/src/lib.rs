@@ -17249,7 +17249,7 @@ extern "C" {
         g: *mut c_float,
         b: *mut c_float,
     );
-    pub fn gtk_im_modules_init();
+
     pub fn gtk_init();
     pub fn gtk_init_check() -> gboolean;
     pub fn gtk_is_initialized() -> gboolean;
