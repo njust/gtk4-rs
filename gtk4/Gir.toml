@@ -12,7 +12,6 @@ trust_return_value_nullability = true
 
 generate = [
     # "Gtk.RequestedSize", a record
-    "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessibleProperty",
@@ -76,7 +75,6 @@ generate = [
     "Gtk.GestureClick",
     "Gtk.GestureDrag",
     "Gtk.GestureRotate",
-    "Gtk.GestureStylus",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.IconLookupFlags",
@@ -311,6 +309,9 @@ trust_return_value_nullability = false
         name = "selection_data"
         const = true
     [[object.function]]
+    name = "show_about_dialog"
+    manual = true # uses varargs
+    [[object.function]]
     name = "init"
     manual = true
     [[object.function]]
@@ -352,6 +353,17 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
+
+[[object]]
+name = "Gtk.Accessible"
+status = "generate"
+manual_traits = ["AccessibleExtManual"]
+    [[object.function]]
+    pattern = "update_(property|state|relation)"
+    ignore = true
+    [[object.function]]
+    pattern = "update_(property|state|relation)_value"
+    manual = true
 
 [[object]]
 name = "Gtk.Actionable"
@@ -830,6 +842,9 @@ generate_builder = true
     name = "drop"
     # manual: FromGlibPtrBorrow<*mut GValue>` is not implemented for `Value`
     ignore = true
+    [[object.function]]
+    pattern = "(get|set)_gtypes"
+    manual = true
 
 [[object]]
 name = "Gtk.DropTargetAsync"
@@ -1028,7 +1043,6 @@ trust_return_value_nullability = false
 name = "Gtk.FlowBox"
 status = "generate"
 generate_builder = true
-manual_traits = ["FlowBoxExtManual"]
     [[object.function]]
     name = "bind_model"
         [[object.function.parameter]]
@@ -1091,6 +1105,13 @@ generate_builder = true
 name = "Gtk.GestureSingle"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "Gtk.GestureStylus"
+status = "generate"
+    [[object.function]]
+    name = "get_axes"
+    manual = true # the axes array has to be `GDK_AXIS_IGNORE` terminated
 
 [[object]]
 name = "Gtk.GLArea"
@@ -1240,7 +1261,6 @@ name = "Gtk.ListBox"
 status = "generate"
 generate_builder = true
 trust_return_value_nullability = false
-manual_traits = ["ListBoxExtManual"]
     [[object.function]]
     name = "bind_model"
         [[object.function.parameter]]
@@ -1287,6 +1307,18 @@ manual_traits = ["GtkListStoreExtManual"]
         [[object.function.parameter]]
         name = "b"
         const = true
+    [[object.function]]
+    pattern = "new"
+    ignore = true
+    [[object.function]]
+    pattern = "newv"
+    manual = true
+    [[object.function]]
+    pattern = "insert_with_values"
+    ignore = true
+    [[object.function]]
+    pattern = "insert_with_valuesv"
+    manual = true
 
 [[object]]
 name = "Gtk.ListView"
@@ -2289,6 +2321,12 @@ manual_traits = ["TreeStoreExtManual"]
     manual = true
     doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
+    pattern = "new"
+    ignore = true
+    [[object.function]]
+    pattern = "newv"
+    manual = true
+    [[object.function]]
     name = "swap"
         [[object.function.parameter]]
         name = "a"
@@ -2296,6 +2334,12 @@ manual_traits = ["TreeStoreExtManual"]
         [[object.function.parameter]]
         name = "b"
         const = true
+    [[object.function]]
+    pattern = "insert_with_values"
+    ignore = true
+    [[object.function]]
+    pattern = "insert_with_valuesv"
+    manual = true
 
 [[object]]
 name = "Gtk.TreeView"
@@ -2356,6 +2400,12 @@ manual_traits = ["WidgetExtManual"]
     name = "remove_tick_callback"
     manual = true
     doc_trait_name = "WidgetExtManual"
+    [[object.function]]
+    name = "activate_action_variant"
+    rename = "activate_action"
+    [[object.function]]
+    name = "activate_action"
+    ignore = true # we use activate_action_variant instead
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_template_child"

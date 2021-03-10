@@ -4,6 +4,7 @@
 
 pub use crate::auto::traits::*;
 
+pub use crate::accessible::AccessibleExtManual;
 pub use crate::actionable::ActionableExtManual;
 pub use crate::builder::BuilderExtManual;
 pub use crate::cell_area::CellAreaExtManual;
@@ -17,10 +18,8 @@ pub use crate::editable::EditableExtManual;
 pub use crate::entry::EntryExtManual;
 pub use crate::entry_buffer::EntryBufferExtManual;
 pub use crate::entry_completion::EntryCompletionExtManual;
-pub use crate::flow_box::FlowBoxExtManual;
 pub use crate::im_context::IMContextExtManual;
 pub use crate::im_context_simple::IMContextSimpleExtManual;
-pub use crate::list_box::ListBoxExtManual;
 pub use crate::list_store::GtkListStoreExtManual;
 pub use crate::notebook::NotebookExtManual;
 pub use crate::overlay::OverlayExtManual;

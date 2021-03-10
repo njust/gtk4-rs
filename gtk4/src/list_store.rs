@@ -9,6 +9,7 @@ use std::ptr;
 
 impl ListStore {
     #[doc(alias = "gtk_list_store_newv")]
+    #[doc(alias = "gtk_list_store_new")]
     pub fn new(column_types: &[Type]) -> ListStore {
         assert_initialized_main_thread!();
         unsafe {
@@ -23,6 +24,7 @@ impl ListStore {
 
 pub trait GtkListStoreExtManual: 'static {
     #[doc(alias = "gtk_list_store_insert_with_values")]
+    #[doc(alias = "gtk_list_store_insert_with_valuesv")]
     fn insert_with_values(
         &self,
         position: Option<u32>,

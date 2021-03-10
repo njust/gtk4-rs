@@ -81,6 +81,7 @@ pub use auto::functions::*;
 pub use auto::*;
 pub use rt::*;
 
+mod accessible;
 mod actionable;
 mod application;
 mod bool_filter;
@@ -109,6 +110,7 @@ mod expression;
 mod file_chooser_dialog;
 mod flow_box;
 mod functions;
+mod gesture_stylus;
 mod icon_theme;
 mod im_context;
 mod im_context_simple;
