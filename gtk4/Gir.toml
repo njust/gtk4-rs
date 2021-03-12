@@ -550,6 +550,9 @@ trust_return_value_nullability = false
         [[object.signal.parameter]]
         name = "path"
         transformation = "treepath"
+    [[object.function]]
+    pattern = "cell_(get|set)_valist"
+    ignore = true # not useful for bindings
 
 [[object]]
 name = "Gtk.CellAreaBox"
@@ -1298,6 +1301,15 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "set_value"
     manual = true
+    [[object.function]]
+    name = "set_valuesv"
+    ignore = true
+    [[object.function]]
+    name = "set_valist"
+    ignore = true # not useful for Rust bindings
+    [[object.function]]
+    name = "set"
+    manual = true
     doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "swap"
@@ -1318,6 +1330,12 @@ manual_traits = ["GtkListStoreExtManual"]
     ignore = true
     [[object.function]]
     pattern = "insert_with_valuesv"
+    manual = true
+    [[object.function]]
+    name = "reorder"
+    manual = true # needs to assert the passed new_order = n_total_items
+    [[object.function]]
+    name = "set_column_types"
     manual = true
 
 [[object]]
@@ -1347,6 +1365,9 @@ status = "generate"
     [[object.function]]
     name = "gerror"
     ignore = true # TODO: figure out error's ownership
+    [[object.function]]
+    name = "error_valist"
+    ignore = true # not useful for bindings
 
 [[object]]
 name = "Gtk.MenuButton"
@@ -1800,6 +1821,9 @@ name = "Gtk.Snapshot"
 status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
+    name = "append_border"
+    manual = true
+    [[object.function]]
     name = "append_linear_gradient"
     # use &[ColorStop] instead of &[&ColorStop]
     manual = true
@@ -1818,6 +1842,13 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "append_conic_gradient"
     # use &[ColorStop] instead of &[&ColorStop]
+    manual = true
+    [[object.function]]
+    name = "push_debug"
+    manual = true # ignore format args
+    [[object.function]]
+    name = "append_node"
+    # use IsRenderNode instead of IsA<RenderNode>
     manual = true
 
 [[object]]
@@ -2105,6 +2136,9 @@ status = "generate"
     [[object.function]]
     name = 'unref_node'
     ignore = true # unsafe
+    [[object.function]]
+    name = "get_valist"
+    ignore = true # not useful for bindings
 
 [[object]]
 name = "Gtk.TreeModelFilter"
@@ -2197,6 +2231,12 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+    [[object.function]]
+    name = "new_from_indicesv"
+    rename = "from_indices"
+    [[object.function]]
+    name = "new_from_indices"
+    ignore = true
 
 [[object]]
 name = "Gtk.TreeRowReference"
@@ -2317,9 +2357,20 @@ manual_traits = ["TreeStoreExtManual"]
         name = "parent"
         const = true
     [[object.function]]
+    name = "set_valuesv"
+    ignore = true
+    [[object.function]]
     name = "set_value"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
+    [[object.function]]
+    name = "set_valist"
+    ignore = true # not useful for Rust bindings
+    [[object.function]]
+    name = "reorder"
+    manual = true
+    [[object.function]]
+    name = "set"
+    manual = true
     [[object.function]]
     pattern = "new"
     ignore = true
@@ -2339,6 +2390,9 @@ manual_traits = ["TreeStoreExtManual"]
     ignore = true
     [[object.function]]
     pattern = "insert_with_valuesv"
+    manual = true
+    [[object.function]]
+    name = "set_column_types"
     manual = true
 
 [[object]]

@@ -6,6 +6,25 @@ use graphene::{Point, Rect};
 use gsk::ColorStop;
 
 impl Snapshot {
+    #[doc(alias = "gtk_snapshot_append_border")]
+    pub fn append_border(
+        &self,
+        outline: &gsk::RoundedRect,
+        border_width: &[f32; 4],
+        border_color: &[gdk::RGBA; 4],
+    ) {
+        unsafe {
+            let border_color_ptr: Vec<gdk::ffi::GdkRGBA> =
+                border_color.iter().map(|c| *c.to_glib_none().0).collect();
+            ffi::gtk_snapshot_append_border(
+                self.to_glib_none().0,
+                outline.to_glib_none().0,
+                border_width,
+                border_color_ptr.as_ptr() as *const _,
+            )
+        }
+    }
+
     #[doc(alias = "gtk_snapshot_append_linear_gradient")]
     pub fn append_linear_gradient(
         &self,
@@ -119,6 +138,21 @@ impl Snapshot {
                 end_point.to_glib_none().0,
                 stops.to_glib_none().0,
                 n_stops,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_snapshot_push_debug")]
+    pub fn push_debug(&self, message: &str) {
+        unsafe { ffi::gtk_snapshot_push_debug(self.to_glib_none().0, message.to_glib_none().0) }
+    }
+
+    #[doc(alias = "gtk_snapshot_append_node")]
+    pub fn append_node<P: gsk::IsRenderNode>(&self, node: &P) {
+        unsafe {
+            ffi::gtk_snapshot_append_node(
+                self.to_glib_none().0,
+                node.upcast_ref().to_glib_none().0,
             );
         }
     }

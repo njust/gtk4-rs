@@ -43,6 +43,7 @@ pub mod subclass;
 mod cairo_interaction;
 mod clipboard;
 mod content_deserializer;
+mod content_formats;
 mod display;
 mod draw_context;
 mod drop;
@@ -55,6 +56,7 @@ mod popup_layout;
 mod rectangle;
 mod rgba;
 mod surface;
+mod texture;
 mod time_coord;
 mod toplevel;
 

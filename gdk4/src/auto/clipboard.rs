@@ -217,11 +217,6 @@ impl Clipboard {
         }))
     }
 
-    //#[doc(alias = "gdk_clipboard_set")]
-    //pub fn set(&self, type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gdk_clipboard_set() }
-    //}
-
     #[doc(alias = "gdk_clipboard_set_content")]
     pub fn set_content<P: IsA<ContentProvider>>(&self, provider: Option<&P>) -> bool {
         unsafe {
@@ -246,18 +241,6 @@ impl Clipboard {
                 self.to_glib_none().0,
                 texture.as_ref().to_glib_none().0,
             );
-        }
-    }
-
-    //#[doc(alias = "gdk_clipboard_set_valist")]
-    //pub fn set_valist(&self, type_: glib::types::Type, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call ffi:gdk_clipboard_set_valist() }
-    //}
-
-    #[doc(alias = "gdk_clipboard_set_value")]
-    pub fn set_value(&self, value: &glib::Value) {
-        unsafe {
-            ffi::gdk_clipboard_set_value(self.to_glib_none().0, value.to_glib_none().0);
         }
     }
 

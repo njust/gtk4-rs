@@ -22,11 +22,6 @@ impl Snapshot {
         unsafe { from_glib_full(ffi::gtk_snapshot_new()) }
     }
 
-    //#[doc(alias = "gtk_snapshot_append_border")]
-    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 79 }; 4) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_append_border() }
-    //}
-
     #[doc(alias = "gtk_snapshot_append_cairo")]
     pub fn append_cairo(&self, bounds: &graphene::Rect) -> Option<cairo::Context> {
         unsafe {
@@ -79,13 +74,6 @@ impl Snapshot {
                 layout.to_glib_none().0,
                 color.to_glib_none().0,
             );
-        }
-    }
-
-    #[doc(alias = "gtk_snapshot_append_node")]
-    pub fn append_node<P: IsA<gsk::RenderNode>>(&self, node: &P) {
-        unsafe {
-            ffi::gtk_snapshot_append_node(self.to_glib_none().0, node.as_ref().to_glib_none().0);
         }
     }
 
@@ -201,11 +189,6 @@ impl Snapshot {
             ffi::gtk_snapshot_push_cross_fade(self.to_glib_none().0, progress);
         }
     }
-
-    //#[doc(alias = "gtk_snapshot_push_debug")]
-    //pub fn push_debug(&self, message: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_push_debug() }
-    //}
 
     //#[doc(alias = "gtk_snapshot_push_gl_shader")]
     //pub fn push_gl_shader(&self, shader: /*Ignored*/&gsk::GLShader, bounds: &graphene::Rect, take_args: &glib::Bytes) {

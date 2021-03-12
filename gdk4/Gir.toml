@@ -15,7 +15,6 @@ generate = [
     "Gdk.AxisUse",
     "Gdk.CairoContext",
     "Gdk.ContentFormatsBuilder",
-    "Gdk.ContentProvider",
     "Gdk.CrossingMode",
     "Gdk.Device",
     "Gdk.DevicePad",
@@ -49,7 +48,6 @@ generate = [
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
-    "Gdk.Texture",
     "Gdk.ToplevelLayout",
     "Gdk.ToplevelState",
     "Gdk.TouchpadGesturePhase",
@@ -177,6 +175,12 @@ name = "Gdk.Clipboard"
 status = "generate"
 generate_builder = true
     [[object.function]]
+    pattern = "set_(value|valist)"
+    ignore = true
+    [[object.function]]
+    name = "set"
+    manual = true # use ToValue
+    [[object.function]]
     name = "read_async"
     manual = true # array
 
@@ -210,7 +214,14 @@ name = "Gdk.ContentFormats"
 status = "generate"
     [[object.function]]
     name = "get_gtypes"
-    ignore = true # TODO: figure this out
+    manual = true
+
+[[object]]
+name = "Gdk.ContentProvider"
+status = "generate"
+    [[object.function]]
+    name = "new_typed"
+    ignore = true # new_for_value is what the bindings are supposed to use
 
 [[object]]
 name = "Gdk.ContentSerializer"
@@ -286,11 +297,8 @@ status = "generate"
     name = "translate_key"
     manual = true # to return a Key instead of a u32
     [[object.function]]
-    name = "map_keycode"
-    ignore = true # TODO: requires FromGlibPtrArrayContainerAsVec first
-    [[object.function]]
-    name = "map_keyval"
-    ignore = true # TODO: requires FromGlibPtrArrayContainerAsVec first
+    pattern = "map_key(code|val)"
+    manual = true # make use of Key
     [[object.function]]
     name = "put_event"
     manual = true # event is a fundemental type
@@ -350,6 +358,14 @@ manual_traits = ["SurfaceExtManual"]
     [[object.function]]
     name = "translate_coordinates"
     manual = true # mutability issue
+
+[[object]]
+name = "Gdk.Texture"
+status = "generate"
+manual_traits = ["TextureExtManual"]
+    [[object.function]]
+    name = "download"
+    manual = true
 
 [[object]]
 name = "Gdk.Toplevel"
