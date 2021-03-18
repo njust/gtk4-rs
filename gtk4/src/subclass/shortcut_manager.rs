@@ -6,12 +6,76 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait ShortcutManagerImpl: ObjectImpl {
-    fn add_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController);
-    fn remove_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController);
+    fn add_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController) {
+        self.parent_add_controller(shortcut_manager, controller);
+    }
+
+    fn remove_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController) {
+        self.parent_remove_controller(shortcut_manager, controller)
+    }
+}
+
+pub trait ShortcutManagerImplExt: ObjectSubclass {
+    fn parent_add_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController);
+    fn parent_remove_controller(
+        &self,
+        shortcut_manager: &Self::Type,
+        controller: &ShortcutController,
+    );
+}
+
+impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
+    fn parent_add_controller(
+        &self,
+        shortcut_manager: &Self::Type,
+        controller: &ShortcutController,
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<ShortcutManager>()
+                as *const ffi::GtkShortcutManagerInterface;
+
+            let func = (*parent_iface)
+                .add_controller
+                .expect("no parent \"add_controller\" implementation");
+
+            func(
+                shortcut_manager
+                    .unsafe_cast_ref::<ShortcutManager>()
+                    .to_glib_none()
+                    .0,
+                controller.to_glib_none().0,
+            )
+        }
+    }
+
+    fn parent_remove_controller(
+        &self,
+        shortcut_manager: &Self::Type,
+        controller: &ShortcutController,
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<ShortcutManager>()
+                as *const ffi::GtkShortcutManagerInterface;
+
+            let func = (*parent_iface)
+                .remove_controller
+                .expect("no parent \"remove_controller\" implementation");
+
+            func(
+                shortcut_manager
+                    .unsafe_cast_ref::<ShortcutManager>()
+                    .to_glib_none()
+                    .0,
+                controller.to_glib_none().0,
+            )
+        }
+    }
 }
 
 unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.add_controller = Some(shortcut_manager_add_controller::<T>);
